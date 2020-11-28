@@ -1,0 +1,45 @@
+name: "Changes since last Release"
+description: "A GitHub action to collect all changes to a repository since the last release."
+author: "Simon Lepel <simbo@simbo.de> (https://simbo.de)"
+
+branding:
+  icon: "list"
+  color: "blue"
+
+inputs:
+
+  line-prefix:
+    description: "prefix to add to every collected commit message"
+    required: false
+    default: "- "
+
+  include-hashes:
+    description: "whether or not the commit hashes should be included in the output"
+    required: false
+    default: true
+
+outputs:
+
+  last-tag:
+    description: "last tag from where on changes are collected"
+    value: ${{ steps.get-last-tag.outputs.last-tag }}
+
+  log:
+    description: "collected commit messages"
+    value: ${{ steps.get-changes.outputs.log }}
+
+runs:
+  using: "composite"
+
+  steps:
+
+    - id: get-last-tag
+      shell: bash
+      run: ${{ github.action_path }}/get-last-tag.sh
+
+    - id: get-changes
+      shell: bash
+      run: ${{ github.action_path }}/get-changes.sh
+        "${{ steps.get-last-tag.outputs.last-tag }}"
+        ${{ inputs.include-hashes }}
+        "${{ inputs.line-prefix }}"
