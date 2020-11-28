@@ -158,8 +158,8 @@ jobs:
           tag_name: ${{ steps.version.outputs.version }}
           release_name: Release ${{ steps.version.outputs.version }}
           body: |
-            Changes since ${{ steps.gitlog.outputs.lastVersion }}:
-            ${{ steps.gitlog.outputs.log }}
+            Changes since ${{ steps.changes.outputs.last-tag }}:
+            ${{ steps.changes.outputs.log }}
 ```
 
 ## License
