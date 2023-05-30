@@ -1,5 +1,5 @@
 #!/bin/bash
 
-tag="$(git describe --tags --abbrev=0 @^ 2> /dev/null)"
+tag="$(git tag --list --sort=-version:refname "$1" | head -n 1 2> /dev/null)"
 
-echo "::set-output name=last-tag::$tag"
+echo "last-tag=${tag}" >> "$GITHUB_OUTPUT"

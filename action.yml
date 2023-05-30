@@ -7,6 +7,10 @@ branding:
   color: "blue"
 
 inputs:
+  last-tag-pattern:
+    description: "pattern of the last tag from which you want to collect the changes"
+    required: false
+    default: "*"
 
   line-prefix:
     description: "prefix to add to every collected commit message"
@@ -35,7 +39,7 @@ runs:
 
     - id: get-last-tag
       shell: bash
-      run: ${{ github.action_path }}/get-last-tag.sh
+      run: ${{ github.action_path }}/get-last-tag.sh "${{ inputs.last-tag-pattern }}"
 
     - id: get-changes
       shell: bash

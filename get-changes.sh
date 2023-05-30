@@ -33,4 +33,4 @@ if [ ${#log} -gt 0 ]; then
 
 fi
 
-echo "::set-output name=log::$log"
+echo "log=${log}" >> "$GITHUB_OUTPUT"
