@@ -2,4 +2,4 @@
 
 tag="$(git describe --tags --abbrev=0 @^ 2> /dev/null)"
 
-echo "::set-output name=last-tag::$tag"
+echo "last-tag=$tag" >> $GITHUB_OUTPUT
