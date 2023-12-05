@@ -1,9 +1,11 @@
-"Changes since last Release" Action
-===================================
+# "Changes since last Release" Action
 
 [![GitHub latest Release](https://img.shields.io/github/v/release/simbo/changes-since-last-release-action?logo=github)](https://github.com/simbo/changes-since-last-release-action/releases)
-[![GitHub last Commit](https://img.shields.io/github/last-commit/simbo/changes-since-last-release-action/master?logo=github)](https://github.com/simbo/changes-since-last-release-action/commits/master)
 [![Action on GitHub Marketplace](https://img.shields.io/badge/action-marketplace-orange.svg?logo=github)](https://github.com/marketplace/actions/changes-since-last-release)
+
+⚠️ ⚠️ ⚠️  
+**DEPRECATED IN FAVOR OF [simbo/changes-between-tags-action](https://github.com/simbo/changes-between-tags-action)**  
+⚠️ ⚠️ ⚠️
 
 A GitHub action to collect all changes to a repository since the last release.
 
@@ -11,14 +13,15 @@ A GitHub action to collect all changes to a repository since the last release.
 
 <!-- TOC anchorMode:github.com -->
 
-- [About](#about)
-- [Usage](#usage)
-  - [Inputs](#inputs)
-  - [Outputs](#outputs)
-  - [Simple Example](#simple-example)
-  - [Example with optional Inputs](#example-with-optional-inputs)
-  - [Example together with "Create a Release" and "Version Check" Actions](#example-together-with-create-a-release-and-version-check-actions)
-- [License](#license)
+- ["Changes since last Release" Action](#changes-since-last-release-action)
+  - [About](#about)
+  - [Usage](#usage)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
+    - [Simple Example](#simple-example)
+    - [Example with optional Inputs](#example-with-optional-inputs)
+    - [Example together with "Create a Release" and "Version Check" Actions](#example-together-with-create-a-release-and-version-check-actions)
+  - [License](#license)
 
 <!-- /TOC -->
 
@@ -26,35 +29,33 @@ A GitHub action to collect all changes to a repository since the last release.
 
 ## About
 
-This action collects all git commit messages from a git repository since the
-last git tag and provides them as output list together with the last git tag.
+This action collects all git commit messages from a git repository since the last git tag and provides them as output
+list together with the last git tag.
 
-To make the necessary information available, the repository needs to be checked
-out with tags and history.  
+To make the necessary information available, the repository needs to be checked out with tags and history.  
 (e.g. using `actions/checkout` with `fetch-depth: 0`)
 
 ## Usage
 
 ### Inputs
 
-| Name | Description | Type | Default |
-|------|-------------|------|---------|
-| `line-prefix` | prefix to add to every collected commit message | String | `"- "` |
-| `include-hashes` | whether or not the commit hashes should be included | Boolean | `true` |
+| Name             | Description                                         | Type    | Default |
+| ---------------- | --------------------------------------------------- | ------- | ------- |
+| `line-prefix`    | prefix to add to every collected commit message     | String  | `"- "`  |
+| `include-hashes` | whether or not the commit hashes should be included | Boolean | `true`  |
 
 ### Outputs
 
-| Name | Description | Type |
-|------|-------------|------|
+| Name       | Description                                  | Type   |
+| ---------- | -------------------------------------------- | ------ |
 | `last-tag` | last tag from where on changes are collected | String |
-| `log` | collected commit messages | String |
+| `log`      | collected commit messages                    | String |
 
-If the repository does not have any tags present, `last-tag` will be *null* and
-`log` will be all prior commit messages.
+If the repository does not have any tags present, `last-tag` will be _null_ and `log` will be all prior commit messages.
 
 ### Simple Example
 
-``` yml
+```yml
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -77,7 +78,7 @@ jobs:
 
 Output:
 
-``` txt
+```txt
 Changes since 0.1.0:
 - 7e6b5f6 bump version
 - 4aeb444 another change
@@ -86,7 +87,7 @@ Changes since 0.1.0:
 
 ### Example with optional Inputs
 
-``` yml
+```yml
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -112,7 +113,7 @@ jobs:
 
 Output:
 
-``` txt
+```txt
 Changes since 0.1.0:
 * bump version
 * another change
@@ -122,11 +123,10 @@ Changes since 0.1.0:
 ### Example together with "Create a Release" and "Version Check" Actions
 
 A common usecase is to use this action's output together with the actions
-["Create a Release"](https://github.com/marketplace/actions/create-a-release)
-and
+["Create a Release"](https://github.com/marketplace/actions/create-a-release) and
 ["Version Check"](https://github.com/marketplace/actions/version-check):
 
-``` yml
+```yml
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -164,4 +164,4 @@ jobs:
 
 ## License
 
-[MIT &copy; Simon Lepel](http://simbo.mit-license.org/)
+[MIT &copy; 2020 Simon Lepel](http://simbo.mit-license.org/2020/)
